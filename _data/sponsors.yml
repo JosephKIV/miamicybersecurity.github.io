@@ -1,0 +1,21 @@
+# Sponsors shown on /sponsors/, replacing the `Sponsor` model.
+#
+#   - company_name: displayed under the logo
+#     logo:         path from the site root. Put the file in
+#                   assets/img/sponsors/ and reference it as
+#                   /assets/img/sponsors/example.png
+#     website_link: optional; if set, the logo and name link there
+#     color:        hex color for the card's left border (default "#8C140C")
+#     content:      optional blurb shown below the name
+#
+# Entries render in file order. To retire a sponsor, delete the entry (the old
+# admin had an `active_sponsor` checkbox; there is no equivalent here).
+#
+# While this list is empty the "Current sponsors:" line is hidden and /sponsors/
+# shows only the "Support Us" and "How to support" cards — same as production.
+
+# - company_name: "Example Corp"
+#   logo: "/assets/img/sponsors/example-corp.png"
+#   website_link: "https://example.com"
+#   color: "#8C140C"
+#   content: "A short thank-you blurb about this sponsor."

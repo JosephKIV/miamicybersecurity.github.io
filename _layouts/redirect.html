@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{%- comment -%}
+Used by meeting posts that are nothing but a link out (a Google Slides deck).
+The old Django site rendered no page at all for these — the `external_link` flag
+meant the homepage card pointed straight at `external_url`. Jekyll always emits a
+page for a post, so rather than leave a dead end at /<slug>/, forward it.
+{%- endcomment -%}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Redirecting&hellip;</title>
+    <link rel="canonical" href="{{ page.external_url | escape }}">
+    <meta http-equiv="refresh" content="0; url={{ page.external_url | escape }}">
+    <meta name="robots" content="noindex">
+</head>
+<body>
+    <p>Redirecting to <a href="{{ page.external_url | escape }}">{{ page.external_url | escape }}</a>&hellip;</p>
+</body>
+</html>

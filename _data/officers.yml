@@ -1,0 +1,80 @@
+# Current executive board, shown on /about/. Migrated from the old `Exec` model.
+#
+#   - name:     displayed name (HTML allowed)
+#     position: displayed title — see the standard list below
+#     rank:     controls display order, low to high
+#     linkedin: optional; omit and no LinkedIn icon is rendered
+#     photo:    optional; omit and the Anonymous emblem placeholder is used.
+#               Put the file in assets/img/exec/ and reference it from the site
+#               root, e.g. /assets/img/exec/jane-doe.jpg
+#
+# Standard positions and their ranks, carried over from the old admin's
+# POSITION_RANKS so the board renders in the same order it always has:
+#
+#   0  President                       6  Membership Coordinator
+#   1  Vice President                  7  Event Coordinator
+#   2  Treasurer                       8  Social Media
+#   3  Secretary                       9  CTF Lead
+#   4  IT                             10  MUCSC Advisor
+#   5  Strategic Partnership Chair    11  MUCTF Advisor
+#
+# The board renders four to a row, so a full row is four entries.
+
+
+- name: "Cole LaCamera"
+  position: "President"
+  rank: 0
+  linkedin: "https://www.linkedin.com/in/colelacamera/"
+  photo: "/assets/img/exec/cole-lacamera.jpg"
+
+- name: "Keaton Travis"
+  position: "Vice President"
+  rank: 1
+  photo: "/assets/img/exec/keaton-travis.jpg"
+
+- name: "Tyler Stephenson"
+  position: "Treasurer"
+  rank: 2
+  photo: "/assets/img/exec/tyler-stephenson.jpg"
+
+- name: "Zander Winslow"
+  position: "Secretary"
+  rank: 3
+  linkedin: "https://www.linkedin.com/in/zander-winslow18/"
+  photo: "/assets/img/exec/zander-winslow.jpg"
+
+- name: "Jackson Ball"
+  position: "IT"
+  rank: 4
+  linkedin: "https://www.linkedin.com/in/jackson-ball-494511299/"
+  photo: "/assets/img/exec/jackson-ball.jpg"
+
+- name: "Drew Laikin"
+  position: "Strategic Partnership Chair"
+  rank: 5
+  linkedin: "https://www.linkedin.com/in/drew-laikin-009640206/"
+  photo: "/assets/img/exec/drew-laikin.jpg"
+
+- name: "Evan Ellsworth"
+  position: "Event Coordinator"
+  rank: 7
+  linkedin: "https://www.linkedin.com/in/evan-ellsworth/"
+  photo: "/assets/img/exec/evan-ellsworth.jpg"
+
+- name: "Adam Farmer"
+  position: "Social Media"
+  rank: 8
+  linkedin: "https://www.linkedin.com/in/adamfarmer9905/"
+  photo: "/assets/img/exec/adam-farmer.jpg"
+
+- name: "Dr. James Walden"
+  position: "MUCSC Advisor"
+  rank: 10
+  linkedin: "https://www.linkedin.com/in/jameswalden/"
+  photo: "/assets/img/exec/dr-james-walden.jpg"
+
+- name: "Dr. Suman Bhunia"
+  position: "MUCTF Advisor"
+  rank: 11
+  linkedin: "https://www.linkedin.com/in/sbhunia/"
+  photo: "/assets/img/exec/dr-suman-bhunia.jpg"

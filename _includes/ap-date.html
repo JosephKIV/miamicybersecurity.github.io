@@ -1,0 +1,10 @@
+{%- comment -%}
+Renders a date the way Django's default DATE_FORMAT ("N j, Y") did, so meeting
+dates read identically to the old site: AP-style month abbreviations, where
+March through July are spelled out and the rest are abbreviated with a period.
+
+    include ap-date.html date=post.date   ->   Sept. 24, 2025
+{%- endcomment -%}
+{%- assign ap_months = "Jan.,Feb.,March,April,May,June,July,Aug.,Sept.,Oct.,Nov.,Dec." | split: "," -%}
+{%- assign month_index = include.date | date: "%m" | times: 1 | minus: 1 -%}
+{{- ap_months[month_index] }} {{ include.date | date: "%-d, %Y" -}}

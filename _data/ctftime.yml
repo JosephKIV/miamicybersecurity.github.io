@@ -1,0 +1,68 @@
+# CTFtime results for team MUCTF (https://ctftime.org/team/214233), rendered on /muctf/.
+#
+# Converted from the Django site's website/ctftime.json. That file used string
+# keys ("0", "1") purely as an artifact of the scraper that wrote it; this is a
+# plain list, newest season first.
+#
+# This data is maintained by hand. The upstream scraper (ctfScrape.py) has been
+# broken since CTFtime put Cloudflare in front of both their site and their API.
+#
+#   - year:   season label shown in the card header
+#     place:  team's overall CTFtime ranking that year
+#     points: team's rating points that year
+#     events: list of { place, name, link, points, rating }
+
+- year: "2024"
+  place: "1445"
+  points: "8.833"
+  events:
+    - place: "924"
+      name: "Cyber Apocalypse 2024: Hacker Royale"
+      link: "https://ctftime.org/event/2255"
+      points: "5400.0000"
+      rating: "6.471"
+    - place: "377/1074"
+      name: "LA CTF 2024"
+      link: "https://ctftime.org/event/2102"
+      points: "1756.0000"
+      rating: "2.362"
+    - place: "8/185"
+      name: "Bearcat CTF 2024"
+      link: "https://ctftime.org/event/2208"
+      points: "7200.0000"
+      rating: "0.000"
+
+- year: "2023"
+  place: "2702"
+  points: "16.528"
+  events:
+    - place: "157/724"
+      name: "CakeCTF 2023"
+      link: "https://ctftime.org/event/1973"
+      points: "294.0000"
+      rating: "0.000"
+    - place: "262/1096"
+      name: "CSAW CTF Qualification Round 2023"
+      link: "https://ctftime.org/event/2087"
+      points: "862.0000"
+      rating: "1.897"
+    - place: "174/986"
+      name: "PatriotCTF 2023"
+      link: "https://ctftime.org/event/2030"
+      points: "3150.0000"
+      rating: "5.392"
+    - place: "61/150"
+      name: "pbctf 2023"
+      link: "https://ctftime.org/event/1763"
+      points: "132.0000"
+      rating: "1.830"
+    - place: "272/522"
+      name: "Incognito 4.0"
+      link: "https://ctftime.org/event/1880"
+      points: "619.0000"
+      rating: "1.073"
+    - place: "171/980"
+      name: "LA CTF 2023"
+      link: "https://ctftime.org/event/1732"
+      points: "3940.0000"
+      rating: "6.335"

@@ -1,0 +1,257 @@
+---
+layout: default
+---
+{%- comment -%}
+Port of the Django site's content/index.html.
+
+The old site grouped meeting posts into semesters with a custom template tag
+(`split_post_semesters`): month < 8 means Spring, otherwise Fall. There is no
+Liquid equivalent, so it is rebuilt in two passes below — first collect the
+distinct semester labels in post order (site.posts is already newest-first, so
+the labels come out newest-first too), then re-filter the posts for each label.
+Nothing in a post's front matter needs to say which semester it belongs to.
+{%- endcomment -%}
+
+{%- assign semester_keys = "" | split: "" -%}
+{%- for post in site.posts -%}
+  {%- assign mo = post.date | date: "%m" | times: 1 -%}
+  {%- assign yr = post.date | date: "%Y" -%}
+  {%- if mo < 8 -%}{%- assign season = "Spring" -%}{%- else -%}{%- assign season = "Fall" -%}{%- endif -%}
+  {%- assign key = season | append: " " | append: yr -%}
+  {%- unless semester_keys contains key -%}
+    {%- assign semester_keys = semester_keys | push: key -%}
+  {%- endunless -%}
+{%- endfor -%}
+
+<style>
+    #post-card {
+        background-color: var(--scheme-post-bg);
+        border-bottom: var(--scheme-red) solid 5px !important;
+        border-radius: 5px;
+        font-size: clamp(10px, calc(50% + 1vw), 25px);
+        font-family: Aldrich;
+        padding: 5px;
+        color: var(--text-grey);
+    }
+
+    #post-card:hover {
+        color: var(--text-white);
+    }
+
+    .collapsible {
+      margin: 16px 0;
+      background-color: var(--scheme-post-bg);
+      border-left: var(--scheme-red) solid 5px !important;
+      border-radius: 5px;
+      color: var(--text-grey);
+      cursor: pointer;
+      padding: 5px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: clamp(10px, calc(50% + 1vw), 25px);;
+    }
+
+
+    .active, .collapsible:hover {
+        color: var(--text-white);
+    }
+
+
+    .arrow-left {
+        display: inline-block;
+        transition: transform .3s ease;
+        font-size: clamp(10px, calc(50% + 1vw), 25px);
+        transform-origin: center; /* Explicitly set to center */
+        -webkit-transform-origin: center; /* For Safari */
+        will-change: transform;
+    }
+
+
+    .arrow-right {
+        display: inline-block;
+        transition: transform .3s ease;
+        font-size: clamp(10px, calc(50% + 1vw), 25px);
+        transform-origin: center; /* Explicitly set to center */
+        -webkit-transform-origin: center; /* For Safari */
+        will-change: transform;
+    }
+
+
+    .collapsible.active .arrow-left {
+        transform-origin: center;
+        -webkit-transform-origin: center;
+        transform: rotatez(90deg);
+        -webkit-transform: rotate(90deg);
+    }
+
+
+    .collapsible.active .arrow-right {
+        transform-origin: center;
+        -webkit-transform-origin: center;
+        transform: rotate(-90deg);
+        -webkit-transform: rotate(-90deg);
+    }
+
+
+    .content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+      background-color: transparent;
+    }
+</style>
+
+<header style="padding-top: 25px;"></header>
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            {% assign alert_message = site.data.alert.message %}
+            {% if alert_message and alert_message != "" %}
+            <div id="alert">
+                {{ alert_message }}
+            </div>
+            {% endif %}
+
+            <p><img src="{{ '/assets/img/MiamiCyberLogo.png' | relative_url }}",
+                    style="height: auto; width: clamp(30%, calc(70% - 15vw), 70%); aspect-ratio: 1/1;
+                    display:block; margin-left: auto; margin-right:auto; max-width: 300px; max-height:300px;" ></p>
+            <div class="card" id="welcome">
+
+                <p style="font-size: 35px !important; text-align: center;">Welcome.
+                <p>
+                <p style="color: var(--text-grey);text-align: center;"><i>Dedicated to providing students with a
+                        platform to explore the cyber domain outside of a formal lecture environment.</i></p>
+                <p style="text-align: center;"><a href="https://maps.app.goo.gl/o9YCen371xbnHVEQA"
+                        style="color: var(--scheme-red);">
+                        DSB (McVey) 126/128</a> from 6:30 PM - 7:30PM
+                    every Wednesday.</p>
+                <p style="text-align: center;">Join the discord for more detailed updates of our schedule.</p>
+                <br>
+                <div class="container d-flex align-items-center justify-content-center">
+                    <a href="https://muhub.campuslabs.com/engage/organization/csc" class="joinBtn">Join us on the
+                        Hub.</a>
+                </div>
+            </div>
+
+            {% for semester in semester_keys %}
+                {%- assign semester_parts = semester | split: " " -%}
+                {%- assign semester_season = semester_parts[0] -%}
+                {%- assign semester_year = semester_parts[1] -%}
+                <button type="button" class="collapsible">
+                        <p style="padding-top: 10px; font-size: clamp(10px, calc(100% + 1vw), 25px) !important; text-align: center;">
+                            {% if semester_season == "Fall" %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="arrow-left" viewBox="0 0 16 16">
+                                  <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                </svg>
+                                <span style="padding-left: 18px; padding-right: 18px; text-align: center;"> Meeting Content: {{ semester }} </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="arrow-right" viewBox="0 0 16 16">
+                                  <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                                </svg>
+                            {% elsif semester_season == "Spring" %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="arrow-left" viewBox="0 0 16 16">
+                                  <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                </svg>
+                                <span style="padding-left: 5px; padding-right: 5px; text-align: center;">Meeting Content: {{ semester }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="arrow-right" viewBox="0 0 16 16">
+                                  <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                                </svg>
+                            {% endif %}
+                        </p>
+                </button>
+                <div class="content">
+                    {% for post in site.posts %}
+                        {%- assign post_month = post.date | date: "%m" | times: 1 -%}
+                        {%- assign post_year = post.date | date: "%Y" -%}
+                        {%- if post_month < 8 -%}{%- assign post_season = "Spring" -%}{%- else -%}{%- assign post_season = "Fall" -%}{%- endif -%}
+                        {%- if post_season != semester_season or post_year != semester_year -%}{%- continue -%}{%- endif -%}
+                        <div class="card" style="background-color: transparent;border-radius: 5px; margin-bottom: 5px;">
+                            <a href="{% if post.external_url %}{{ post.external_url | escape }}{% else %}{{ post.url | relative_url }}{% endif %}"
+                                style="text-decoration: none;">
+                                <div class="card-body" id="post-card">
+                                    <div class="d-flex">
+                                        <div class="p-2 flex-grow-1">{{ post.title | slice: 0, 200 | escape }}</div>
+                                        <div class="p-2">{{ post.author | escape }}</div>
+                                        <div class="p-2">{% include ap-date.html date=post.date %}</div>
+                                    </div>
+                                </div>
+                            </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <script>
+                // A panel animates between max-height 0 and its measured pixel
+                // height, but that pixel cap goes stale as soon as the content
+                // reflows — Aldrich arriving after DOMContentLoaded makes every
+                // card a little taller, which clipped the last meeting of the
+                // semester that starts open. So the cap is only held for the
+                // duration of the animation: once it settles the panel goes back
+                // to an uncapped height and tracks its own content from there.
+                var coll = document.getElementsByClassName("collapsible");
+                var TRANSITION_MS = 200; // keep in sync with .content's transition
+
+                function openPanel(content) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    afterTransition(content, function () {
+                        // Still open? Drop the cap so late reflows can't clip it.
+                        if (content.previousElementSibling.classList.contains("active")) {
+                            content.style.maxHeight = "none";
+                        }
+                    });
+                }
+
+                function closePanel(content) {
+                    // There is nothing to animate from "none", so pin the current
+                    // height and let the browser observe it before dropping to 0.
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    void content.offsetHeight;
+                    content.style.maxHeight = null;
+                }
+
+                // transitionend does not fire when the height happens not to
+                // change (or when the user prefers reduced motion), so fall back
+                // to a timer.
+                function afterTransition(content, callback) {
+                    var done = false;
+                    function run(event) {
+                        if (event && event.propertyName !== "max-height") { return; }
+                        if (done) { return; }
+                        done = true;
+                        content.removeEventListener("transitionend", run);
+                        callback();
+                    }
+                    content.addEventListener("transitionend", run);
+                    setTimeout(run, TRANSITION_MS + 50);
+                }
+
+                for (var i = 0; i < coll.length; i++) {
+                    coll[i].addEventListener("click", function () {
+                        this.classList.toggle("active");
+                        if (this.classList.contains("active")) {
+                            openPanel(this.nextElementSibling);
+                        } else {
+                            closePanel(this.nextElementSibling);
+                        }
+                    });
+                }
+
+                document.addEventListener("DOMContentLoaded", function () {
+                    // No semesters yet (empty _posts) — nothing to expand.
+                    if (coll.length === 0) { return; }
+
+                    // Add the "active" class to the first button
+                    coll[0].classList.add("active");
+
+                    // Expand the first content. It starts uncapped rather than
+                    // animating, so its height never depends on a measurement
+                    // taken before the web font landed.
+                    coll[0].nextElementSibling.style.maxHeight = "none";
+                });
+            </script>
+        </div>
+    </div>
+</div>

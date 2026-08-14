@@ -1,0 +1,108 @@
+---
+layout: default
+permalink: /sponsors/
+---
+{%- comment -%} Port of the Django site's content/sponsors.html {%- endcomment -%}
+<style>
+
+  .head_text {
+      color:var(--text-white);
+      /* text-shadow: rgba(137, 22, 14, 0.658) -2px 2px 10px; */
+
+
+  }
+  @media all and (max-width: 640px) {
+    .head_text {
+      flex-flow:column wrap;
+      text-align: center;
+    }
+  }
+  #post-card {
+      background-color: var(--scheme-post-bg);
+      border-radius: 5px;
+      font-family: Aldrich;
+      padding: 10px;
+      color: var(--text-grey);
+      user-select: none;
+      text-align: center;
+      margin-bottom: 50px;
+  }
+  #post-content {
+    background-color: var(--scheme-post-content-bg) !important;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  #ctftable{
+    color: var(--text-grey) !important;
+
+  }
+  td{
+    border-top: none !important;
+    background-color: transparent !important;
+  }
+
+
+</style>
+<header style="padding-top: 75px;"></header>
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+        <p><img src="{{ '/assets/img/MiamiCyberLogo.png' | relative_url }}",
+                    style="height: auto; width: clamp(30%, calc(70% - 15vw), 70%); aspect-ratio: 1/1;
+                    display:block; margin-left: auto; margin-right:auto; max-width: 300px; max-height:300px;" ></p>
+
+        <div class="card" id="welcome">
+                <p style="font-size: 35px !important; text-align: center;">Support Us</p>
+            <p style="color: var(--text-grey);text-align: center;">We appreciate all your support!</p>
+            {% if site.data.sponsors %}
+                <p style="text-align: center;">Current sponsors:</p>
+            {% endif %}
+        </div>
+
+        {% for sponsor in site.data.sponsors %}
+            {%- assign sponsor_color = sponsor.color | default: "#8C140C" -%}
+            <div class="card-body" id="post-card" style="border-left: 5px solid {{ sponsor_color }};">
+
+                <div class="col mb-4">
+                    <div class="text-center">
+                        {% if sponsor.website_link %}
+                            <a href="{{ sponsor.website_link | escape }}" target="_blank">
+                                <img class="logo" src='{{ sponsor.logo | relative_url }}' style="margin-bottom: 10px; height: auto; max-width: clamp(250px, calc(50% + 1vw), 600px);">
+
+                                <h5 class="font-weight-bold text-primary mb-0" style="color: var(--text-white)! important;font-family: Aldrich, sans-serif;">
+                                    <strong>{{ sponsor.company_name | escape }}</strong>
+                                </h5>
+                            </a>
+                        {% else %}
+                            <img class="logo" src='{{ sponsor.logo | relative_url }}' style="margin-bottom: 10px; height: auto; max-width: clamp(250px, calc(50% + 1vw), 600px);">
+
+                                <h5 class="font-weight-bold text-primary mb-0" style="color: var(--text-white)! important;font-family: Aldrich, sans-serif;">
+                                    <strong>{{ sponsor.company_name | escape }}</strong>
+                                </h5>
+                        {% endif %}
+                        <p class="text-muted mb-2" style="margin-top: 20px;">{{ sponsor.content | escape }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="card" id="welcome">
+                <p style="font-size: 30px !important; text-align: center;">How to support</p>
+            <p style="text-align: left; padding-left: clamp(5px, 4vw, 60px)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="arrow-left" viewBox="0 0 16 16" style="vertical-align: left;">
+                                          <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                </svg>
+                if you’re a company who wants to sponsor us please contact us:
+                <a href="mailto: mucsc@miamioh.edu" style="color: var(--scheme-red);"><u>mucsc@miamioh.edu</u></a>.
+                <br style="margin-bottom: 10px">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="arrow-left" viewBox="0 0 16 16" style="vertical-align: left;">
+                                          <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                </svg>
+                If you’re an individual who would like to support our work, visit our
+                <a href="https://www.givetomiamioh.org/CyberSecurityClub" style="color: var(--scheme-red);"><u>donation page</u></a>.
+            </p>
+        </div>
+    </div>
+  </div>
+</div>

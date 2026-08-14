@@ -1,0 +1,55 @@
+# Past executive board members, shown under "Executive Board Alumni" on /about/.
+# Migrated from the old `Exec` model rows that were no longer current.
+#
+#   - name:     displayed name (HTML allowed)
+#     position: highest position held — the heading on /about/ notes this
+#     linkedin: optional; omit and no LinkedIn icon is rendered
+#
+# Alumni photos are deliberately not rendered (that markup has always been
+# commented out in about.html), so there is no `photo` field here. Entries
+# appear in file order, four to a row.
+
+
+- name: "Rob Pacsi"
+  position: "Social Media"
+  linkedin: "https://www.linkedin.com/in/robbie-pacsi-998b22177/"
+
+- name: "Justin Klein"
+  position: "Membership Coordinator"
+  linkedin: "https://www.linkedin.com/in/justin-klein-3b0718265/"
+
+- name: "Andrew Boothe"
+  position: "Treasurer"
+  linkedin: "https://www.linkedin.com/in/andrew-boothe/"
+
+- name: "Reed Michelini"
+  position: "Secretary"
+  linkedin: "https://www.linkedin.com/in/reed-michelini-47b3541a2/"
+
+- name: "Austin Flaherty"
+  position: "President"
+  linkedin: "https://www.linkedin.com/in/austin-flaherty/"
+
+- name: "Blake Rile"
+  position: "Vice President"
+  linkedin: "https://www.linkedin.com/in/blakerile/"
+
+- name: "Evan Earhart"
+  position: "IT"
+  linkedin: "https://www.linkedin.com/in/evan-earhart/"
+
+- name: "Alec Byrd"
+  position: "Secretary"
+  linkedin: "https://www.linkedin.com/in/alec-byrd/"
+
+- name: "Frederick Levins"
+  position: "President"
+  linkedin: "https://www.linkedin.com/in/fredericklevins"
+
+- name: "Dylan Middendorf"
+  position: "CTF Lead"
+  linkedin: "https://www.linkedin.com/in/dylan-middendorf-538738251/"
+
+- name: "Sriram Ranganathan"
+  position: "Event Coordinator"
+  linkedin: "https://www.linkedin.com/in/sriram-ranganathan-a0aa9128a/"

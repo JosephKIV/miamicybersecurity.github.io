@@ -1,0 +1,20 @@
+CRITICAL
+========
+- Share private meeting decks
+- Fix "Join us on the Hub" button
+- Fix Code of Ethics + Constitution footer link
+- Rewrite the Quantum Computing post body
+- Replace the "Redacted" post body.
+- Renumber Spring 2026 meetings from 03-31 onward
+- Add the missing closing </div> (88 open, 87 closed).
+- Draft SOP for posts (Google Meet room code)
+- Downscale `assets/img/exec/drew-laikin.jpg`
+
+NOT SO CRITICAL
+===============
+
+ON THE BACK BURNER
+==================
+
+NOT PLANNED
+===========

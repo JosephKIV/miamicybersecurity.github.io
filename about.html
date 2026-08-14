@@ -1,0 +1,118 @@
+---
+layout: default
+permalink: /about/
+---
+{%- comment -%}
+Port of the Django site's content/about.html.
+
+Django's "divisibleby:4" row break has no direct Liquid equivalent — Liquid
+conditions cannot take filters — so the modulo is assigned first and then
+tested. Current officers sort by `rank`; alumni stay in file order, matching the
+old unordered queryset.
+{%- endcomment -%}
+{%- comment -%}
+An officers.yml holding only comments parses to nil, and Jekyll's `sort` raises
+on a null object, so only sort when there is something to sort.
+{%- endcomment -%}
+{%- assign current_officers = "" | split: "" -%}
+{%- if site.data.officers -%}
+  {%- assign current_officers = site.data.officers | sort: "rank" -%}
+{%- endif -%}
+<div class="container py-4 py-xl-5" id="content">
+    <!-- <div class="row mb-4 mb-lg-5">
+        <div class="col-md-8 col-xl-6 text-center mx-auto">
+            <h2 class="font-weight-bold"
+                style="color: var(--scheme-red)!important;font-family: Aldrich, sans-serif;">About Us</h2>
+            <p style="color: var(--text-grey) !important;text-align: center; font-family: Aldrich, sans-serif;"><br><br><br></p>
+        </div>
+    </div> -->
+    <div class="row mb-4 mb-lg-5">
+        <div class="col-md-8 col-xl-6 text-center mx-auto">
+            <h2 class="font-weight-bold"
+                style="color: var(--scheme-red)!important;font-family: Aldrich, sans-serif;">Executive Board</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        {% for member in current_officers %} <!-- Dynamically create executive board -->
+            {%- assign row_start = forloop.index0 | modulo: 4 -%}
+            {%- assign row_end = forloop.index | modulo: 4 -%}
+            {% if row_start == 0 %} <div class="row text-center"> {% endif %} <!-- split into columns of 4 with as many rows as needed -->
+                <div class="col mb-4">
+                    <div class="text-center">
+                {% if member.photo %}
+                <img class="rounded-circle mb-3 fit-cover" width="130" height="130" src="{{ member.photo | relative_url }}">
+                {% else %}
+                <img class="rounded-circle mb-3 fit-cover" width="130" height="130" src='{{ "/assets/img/Anonymous_emblem.svg.png" | relative_url }}'>  <!-- Shouldn't ever get here as photos are required, but for the sake of an incomplete roster -->
+                {% endif %}
+                <h5 class="font-weight-bold text-primary mb-0"
+                    style="color: var(--scheme-red)!important;font-family: Aldrich, sans-serif;">
+                    <strong>{{ member.name }}</strong></h5>
+                <p class="text-muted mb-2">{{ member.position | escape }}</p>
+                <ul class="list-inline text-muted w-100 mb-0">
+                    {% if member.linkedin %}
+                    <li class="list-inline-item text-center"><a
+                            href="{{ member.linkedin }}"
+                            style="color: var(--secondary);">
+                            <div class="d-flex flex-column align-items-center"><svg class="bi bi-linkedin"
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" viewbox="0 0 16 16">
+                                    <path
+                                        d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z">
+                                    </path>
+                                </svg></div>
+                        </a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        {% if row_end == 0 or forloop.last %}</div><!-- row closing --><hr>{% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="row mb-4 mb-lg-5">
+        <div class="col-md-8 col-xl-6 text-center mx-auto">
+            <h2 class="font-weight-bold"
+                style="color: var(--scheme-red)!important;font-family: Aldrich, sans-serif;">Executive Board Alumni</h2>
+            <p class="text-muted mb-2">*Highest Position Held</p>
+        </div>
+    </div>
+
+    <div class="container">
+    {% for member in site.data.alumni %} <!-- Dynamically create executive board -->
+        {%- assign row_start = forloop.index0 | modulo: 4 -%}
+        {%- assign row_end = forloop.index | modulo: 4 -%}
+        {% if row_start == 0 %} <div class="row text-center"> {% endif %} <!-- split into columns of 4 with as many rows as needed -->
+          <div class="col mb-4">
+        <div class="text-center">
+            <!-- Alumni photos are intentionally not rendered.
+            {% if member.photo %}
+            <img class="rounded-circle mb-3 fit-cover" width="130" height="130" src="{{ member.photo | relative_url }}">
+            {% else %}
+            <img class="rounded-circle mb-3 fit-cover" width="130" height="130" src='{{ "/assets/img/Anonymous_emblem.svg.png" | relative_url }}'>
+            {% endif %}
+            -->
+            <h5 class="font-weight-bold text-primary mb-0"
+                style="color: var(--scheme-red)!important;font-family: Aldrich, sans-serif;">
+                <strong>{{ member.name }}</strong></h5>
+            <p class="text-muted mb-2">{{ member.position | escape }}</p>
+            <ul class="list-inline text-muted w-100 mb-0">
+                {% if member.linkedin %}
+                <li class="list-inline-item text-center"><a
+                        href="{{ member.linkedin }}"
+                        style="color: var(--secondary);">
+                        <div class="d-flex flex-column align-items-center"><svg class="bi bi-linkedin"
+                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" viewbox="0 0 16 16">
+                                <path
+                                    d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z">
+                                </path>
+                            </svg></div>
+                    </a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    {% if row_end == 0 or forloop.last %}</div><!-- row closing --><hr>{% endif %}
+    {% endfor %}
+</div>

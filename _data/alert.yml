@@ -1,0 +1,7 @@
+# Optional site-wide notice shown in a box at the top of the homepage, replacing
+# the old `Alert` singleton model. Leave `message` empty to hide the box.
+#
+# HTML is allowed, e.g.:
+#   message: 'No meeting this week — <a href="https://discord.gg/k5fvEVTyB5">see Discord</a>.'
+
+message: ""

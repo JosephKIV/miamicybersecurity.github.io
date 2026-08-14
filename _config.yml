@@ -1,0 +1,29 @@
+# Miami University Cybersecurity Club — site configuration
+#
+# This file is NOT reloaded automatically by `bundle exec jekyll serve`.
+# Restart the server after editing it.
+
+title: Miami University Cybersecurity Club
+email: mucsc@miamioh.edu
+description: >-
+  Dedicated to providing students with a platform to explore the cyber domain
+  outside of a formal lecture environment.
+
+url: "https://miamicyber.org"
+baseurl: ""
+
+# Meeting posts live at top-level slugs (/s26-m5/), matching the URLs the old
+# Django site served via `path('<slug:slug>/', PostDetail)`. `:slug` comes from
+# the part of the filename after the date, and can be overridden per-post with a
+# `slug:` front matter key.
+permalink: /:slug/
+
+plugins:
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CONTRIBUTING.md
+  - vendor

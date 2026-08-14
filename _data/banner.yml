@@ -1,0 +1,19 @@
+# Strings the navbar brand types out, replacing the old `Banner` admin model.
+#
+# The two rotations are separate. Entries WITHOUT `show_mobile` cycle on desktop;
+# entries WITH `show_mobile: true` cycle on narrow viewports (under 992px)
+# instead. An entry never appears in both, so a mobile entry is the short
+# stand-in for the long desktop ones — keep it to about 10 characters, as the
+# old admin form enforced.
+#
+#   - message:     the text to type out
+#     show_mobile: put this string in the mobile rotation instead of the
+#                  desktop one (default false)
+
+- message: "Miami University Cybersecurity Club"
+- message: "Miami University Cybersecurity Club"
+- message: "sudo rm -rf /*"
+- message: ":(){ : | :& };:"
+- message: "Join Our  Active Members"
+- message: "MUCSC"
+  show_mobile: true
